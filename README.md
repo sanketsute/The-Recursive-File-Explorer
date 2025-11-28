@@ -7,7 +7,7 @@ This project demonstrates the implementation of the **Recursive Component Patter
 
 ## 📸 Demo
 
-![File Explorer UI](./screenshot.png)
+![File Explorer UI](./screenshot.jpg)
 *(A visual representation of the N-depth nested structure with indentation guides)*
 
 ## 🚀 Key Engineering Features
@@ -28,7 +28,7 @@ Rendering large trees can be expensive. If a user expands a folder at `Level 10`
 
 ## 🛠 Tech Stack
 
-- **Framework:** React 18
+- **Framework:** React 19
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Build Tool:** Vite
