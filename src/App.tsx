@@ -1,12 +1,15 @@
 import "./App.css";
 import FolderStructure from "./components/folderStructure";
 import Header from "./components/header";
+import { FolderStructureContextProvider } from "./contexts/folderStructureContext";
 
-function App() {
+const App = () => {
   return (
     <>
       <Header />
-      <FolderStructure/>
+      <FolderStructureContextProvider>
+        <FolderStructure />
+      </FolderStructureContextProvider>
     </>
   );
 }

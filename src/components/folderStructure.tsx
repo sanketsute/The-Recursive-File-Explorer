@@ -1,5 +1,6 @@
-import { explorerData, type TExplorerNode } from "../services/constantStucture";
-import { memo, useCallback, useState } from "react";
+import { memo, use, useCallback, useEffect, useState } from "react";
+import { useFolderStructureContext } from "../contexts/folderStructureContext";
+import type { TExplorerNode } from "../services/constantStucture";
 
 const FolderIcon = ({ open = false }: { open?: boolean }) => (
   <span className="mr-2 text-yellow-500">{open ? "📂" : "📁"}</span>
@@ -9,13 +10,16 @@ const ChevronRight = () => <span className="text-gray-400 text-xs mr-1">▶</spa
 const ChevronDown = () => <span className="text-gray-400 text-xs mr-1">▼</span>;
 
 const Folder = memo(({ data }: { data: TExplorerNode }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(data.open || false);
+  const { setFolderStuctureRef } = useFolderStructureContext();
   const isFolder = data.isFolder;
 
   const toggleFolder = useCallback((e: React.MouseEvent) => {
     e.stopPropagation(); 
-    setOpen((prev) => !prev);
-  }, []);
+    setOpen((prev) => {
+      setFolderStuctureRef(data.id, !prev);
+      return !prev});
+  }, [data.id, setFolderStuctureRef]);
 
   return (
     <div className="select-none"> 
@@ -46,9 +50,10 @@ const Folder = memo(({ data }: { data: TExplorerNode }) => {
 });
 
 const FolderStructure = () => {
+  const { folderStructure } = useFolderStructureContext();
   return (
     <div className="p-10 pt-22 size-max"> 
-      <Folder data={explorerData} />
+      <Folder data={folderStructure} />
     </div>
   );
 };

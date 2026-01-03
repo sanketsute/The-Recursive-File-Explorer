@@ -3,6 +3,7 @@ export type TExplorerNode = {
   id: string;
   name: string;
   isFolder: boolean;
+  open?: boolean;
   children?: TExplorerNode[];
 };
 export const explorerData:TExplorerNode = {
